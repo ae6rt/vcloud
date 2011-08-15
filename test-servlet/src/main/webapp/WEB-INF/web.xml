@@ -8,6 +8,8 @@
     <!--<web-app>-->
     <display-name>MemcacheSessionTestServlet</display-name>
 
+    <distributable/>
+    
     <servlet>
         <servlet-name>hello</servlet-name>
         <servlet-class>org.marketlive.helloworld.HelloServlet</servlet-class>
