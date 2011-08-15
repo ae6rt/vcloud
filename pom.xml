@@ -49,6 +49,7 @@
     <module>session-manager-tc7</module>
     <module>spring-security</module>
     <module>async-cache</module>
+    <module>test-servlet</module>
   </modules>
 
   <dependencyManagement>
