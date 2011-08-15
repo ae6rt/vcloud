@@ -1,0 +1,8 @@
+<Context docBase="/Users/mpetrovic/Projects/memcachedServlet/target/hello.war">
+  <Manager className="de.javakaffee.web.msm.MemcachedBackupSessionManager"
+    memcachedNodes="n1:172.16.6.140:11211,n2:172.16.6.140:11212"
+    failoverNodes="n1"
+    requestUriIgnorePattern=".*\.(ico|png|gif|jpg|css|js)$"
+    transcoderFactoryClass="de.javakaffee.web.msm.JavaSerializationTranscoderFactory"
+    />
+</Context>
