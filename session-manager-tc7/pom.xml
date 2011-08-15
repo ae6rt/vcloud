@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jbrisbin.vcloud</groupId>
+  <artifactId>session-manager-tc7</artifactId>
+  <version>1.2.1</version>
+  <name>vCloud Catalina Session Manager</name>
+  <packaging>jar</packaging>
+
+  <properties>
+    <catalina.version>6.0.26</catalina.version>
+    <rabbitmq.version>1.8.0</rabbitmq.version>
+    <slf4j.version>1.6.0</slf4j.version>
+  </properties>
+
+  <parent>
+    <groupId>com.jbrisbin.vcloud</groupId>
+    <artifactId>core</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <dependencies>
+
+    <!-- Logging -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+
+    <!-- Tomcat -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>catalina</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>coyote</artifactId>
+    </dependency>
+    <!--dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>juli</artifactId>
+    </dependency-->
+
+    <dependency>
+      <groupId>com.rabbitmq</groupId>
+      <artifactId>amqp-client</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>
