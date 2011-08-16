@@ -16,10 +16,7 @@
 package com.jbrisbin.vcloud.session;
 
 import com.rabbitmq.client.*;
-import org.apache.catalina.Container;
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.Loader;
-import org.apache.catalina.Session;
+import org.apache.catalina.*;
 import org.apache.catalina.session.StoreBase;
 import org.apache.tomcat.util.modeler.Registry;
 import org.slf4j.Logger;
@@ -69,7 +66,13 @@ public class CloudStore extends StoreBase {
    * things start blowing up.
    */
   protected String state = "stopped";
-  /**
+
+    /**
+     * Tomcat7 state object
+     */
+   protected LifecycleState lifecycleState;
+
+    /**
    * Hostname of the RabbitMQ server we want to connect to. A combination of setting different MQ servers, virtual
    * hosts, and exchanges gives us the flexibility to configure what "cluster" this node is a part of.
    */
@@ -213,8 +216,9 @@ public class CloudStore extends StoreBase {
    *
    * @return
    */
-  public String getState() {
-    return state;
+//  public String getState() {
+  public LifecycleState getState() {
+    return lifecycleState;
   }
 
   /**
@@ -646,7 +650,7 @@ public class CloudStore extends StoreBase {
   }
 
   @Override
-  public void start() throws LifecycleException {
+  public void startInternal() throws LifecycleException {
     setState("starting");
     MDC.put("method", "start()");
     super.start();
@@ -696,7 +700,7 @@ public class CloudStore extends StoreBase {
   }
 
   @Override
-  public void stop() throws LifecycleException {
+  public void stopInternal() throws LifecycleException {
     setState("stopping");
     MDC.put("method", "stop()");
     try {

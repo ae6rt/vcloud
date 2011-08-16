@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author J. Brisbin <jon@jbrisbin.com>
  */
 @SuppressWarnings({"unchecked"})
-public class CloudManager extends ManagerBase implements Lifecycle, LifecycleListener, PropertyChangeListener {
+public class CloudManager extends ManagerBase implements LifecycleListener, PropertyChangeListener {
 
   /**
    * Info about this implementation of a <b>Manager</b>.
@@ -409,7 +409,7 @@ public class CloudManager extends ManagerBase implements Lifecycle, LifecycleLis
    *
    * @throws LifecycleException
    */
-  public void start() throws LifecycleException {
+  public void startInternal() throws LifecycleException {
     if (log.isDebugEnabled()) {
       log.debug("manager.start()");
     }
@@ -431,7 +431,7 @@ public class CloudManager extends ManagerBase implements Lifecycle, LifecycleLis
    *
    * @throws LifecycleException
    */
-  public void stop() throws LifecycleException {
+  public void stopInternal() throws LifecycleException {
     if (log.isDebugEnabled()) {
       log.debug("manager.stop()");
     }
