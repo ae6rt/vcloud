@@ -46,7 +46,7 @@
     <module>amqp-classloader</module>
     <module>mbean-invoker</module>
     <module>session-manager</module>
-    <module>session-manager-tc7</module>
+     <module>session-manager-tc7</module>
     <module>spring-security</module>
     <module>async-cache</module>
     <module>test-servlet</module>
