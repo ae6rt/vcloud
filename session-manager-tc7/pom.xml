@@ -52,12 +52,12 @@
         <!-- Tomcat -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
-            <artifactId>catalina</artifactId>
+            <artifactId>tomcat-catalina</artifactId>
             <version>${catalina.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
-            <artifactId>coyote</artifactId>
+            <artifactId>tomcat-coyote</artifactId>
             <version>${catalina.version}</version>
         </dependency>
         <dependency>
@@ -66,26 +66,12 @@
             <version>${catalina.version}</version>
         </dependency>
 
-        <!--dependency>
-          <groupId>org.apache.tomcat</groupId>
-          <artifactId>juli</artifactId>
-        </dependency-->
-
+        <!-- RabbitMQ -->
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
         </dependency>
 
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>org.petrovic</id>
-            <name>Last resort</name>
-            <url>http://www.petrovic.org/maven</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
-
 
 </project>
