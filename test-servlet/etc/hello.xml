@@ -1,4 +1,4 @@
-<Context docBase="/Users/petrovic/Projects/helloservlet/target/foo.war">
+<Context docBase="/Users/petrovic/Projects/vcloud/test-servlet/target/hello.war">
 
   <Manager className="com.jbrisbin.vcloud.session.CloudManager">
 		<Store className="com.jbrisbin.vcloud.session.CloudStore"
@@ -7,7 +7,7 @@
                                          maxMqHandlers="5"
                                          maxRetries="3"
 					 loadTimeout="5"
-					 mqHost="192.168.1.111"
+					 mqHost="192.168.0.149"
 					 mqPort="5672"
 					 mqUser="guest"
 					 mqPassword="guest"
