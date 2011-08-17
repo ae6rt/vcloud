@@ -420,7 +420,6 @@ public class CloudManager extends ManagerBase implements LifecycleListener, Prop
         store.startInternal();
         started.set(true);
         setState(LifecycleState.STARTING);
-        System.out.println("CloudManager started");
     }
 
     /**

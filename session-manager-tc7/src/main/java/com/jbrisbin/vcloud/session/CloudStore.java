@@ -702,7 +702,6 @@ public class CloudStore extends StoreBase {
         }
         MDC.remove("method");
         setState(LifecycleState.STARTED);
-        System.out.println("CloudStore started");
     }
 
     @Override
