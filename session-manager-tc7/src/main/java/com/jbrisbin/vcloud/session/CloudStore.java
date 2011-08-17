@@ -169,7 +169,7 @@ public class CloudStore extends StoreBase {
     /**
      * Workers pull events from the following Queues and do work, so they have their own ThreadPool.
      */
-    protected ExecutorService workerPool = Executors.newCachedThreadPool();
+    protected ExecutorService workerPool = Executors.newCachedThreadPool(new DaemonThreadFactory("workers", "worker-"));
     /**
      * Keep references to submitted workers in case we need to cancel them all.
      */
