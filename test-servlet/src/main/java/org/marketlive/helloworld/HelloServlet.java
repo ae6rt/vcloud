@@ -13,16 +13,19 @@ public class HelloServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String p = request.getParameter(ID);
-        System.out.println("request with id=" + p);
+//        System.out.println("request with id=" + p);
 
         HttpSession httpSession = request.getSession();
         Object id = httpSession.getAttribute(ID);
+        String prefix;
         if (id == null) {
-            System.out.println("setting new id on session");
+            prefix = "new";
             httpSession.setAttribute(ID, p);
             id = httpSession.getAttribute(ID);
+        } else {
+            prefix = "cached";
         }
         // echo what is actually in the session
-        response.getWriter().println("id=" + id.toString());
+        response.getWriter().println(String.format("[%s] id=%s", prefix, id.toString()));
     }
 }
