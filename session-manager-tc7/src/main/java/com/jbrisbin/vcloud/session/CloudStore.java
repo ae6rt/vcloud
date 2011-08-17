@@ -658,7 +658,7 @@ public class CloudStore extends StoreBase {
     setState(LifecycleState.STARTING);
 
     MDC.put("method", "start()");
-    super.start();
+    super.startInternal();
     if (DEBUG) {
       log.debug("Starting CloudStore: " + storeId);
     }

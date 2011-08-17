@@ -410,10 +410,10 @@ public class CloudManager extends ManagerBase implements LifecycleListener, Prop
    * @throws LifecycleException
    */
   public void startInternal() throws LifecycleException {
-      if (log.isDebugEnabled()) {
-          log.debug("manager.start()");
-      }
       super.startInternal();
+      if (log.isDebugEnabled()) {
+          log.debug("manager.startInternal()");
+      }
       if (started.get()) {
           return;
       }
@@ -430,7 +430,7 @@ public class CloudManager extends ManagerBase implements LifecycleListener, Prop
     public void stopInternal() throws LifecycleException {
         setState(LifecycleState.STOPPING);
         if (log.isDebugEnabled()) {
-            log.debug("manager.stop()");
+            log.debug("manager.stopInternal()");
         }
         started.set(false);
         store.stop();
