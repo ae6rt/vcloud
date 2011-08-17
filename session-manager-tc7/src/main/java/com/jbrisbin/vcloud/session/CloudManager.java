@@ -410,37 +410,34 @@ public class CloudManager extends ManagerBase implements LifecycleListener, Prop
    * @throws LifecycleException
    */
   public void startInternal() throws LifecycleException {
-    if (log.isDebugEnabled()) {
-      log.debug("manager.start()");
-    }
-    if (started.get()) {
-      return;
-    }
-    lifecycle.fireLifecycleEvent(START_EVENT, null);
-    try {
-      init();
-    } catch (Throwable t) {
-      log.error(t.getMessage(), t);
-    }
-    store.start();
-    started.set(true);
+      if (log.isDebugEnabled()) {
+          log.debug("manager.start()");
+      }
+      super.startInternal();
+      if (started.get()) {
+          return;
+      }
+      store.start();
+      started.set(true);
+      setState(LifecycleState.STARTING);
   }
 
-  /**
+    /**
    * Stop the <b>Manager</b> and the underlying <b>CloudStore</b>.
    *
    * @throws LifecycleException
    */
-  public void stopInternal() throws LifecycleException {
-    if (log.isDebugEnabled()) {
-      log.debug("manager.stop()");
+    public void stopInternal() throws LifecycleException {
+        setState(LifecycleState.STOPPING);
+        if (log.isDebugEnabled()) {
+            log.debug("manager.stop()");
+        }
+        started.set(false);
+        store.stop();
+        super.stopInternal();
     }
-    started.set(false);
-    lifecycle.fireLifecycleEvent(STOP_EVENT, null);
-    store.stop();
-  }
 
-  /**
+    /**
    * We only care about changes to <code>sessionTimeout</code> properties at this point in time.
    *
    * @param propertyChangeEvent

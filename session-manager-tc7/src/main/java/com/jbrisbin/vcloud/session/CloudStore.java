@@ -61,16 +61,12 @@ public class CloudStore extends StoreBase {
    * <b>ObjectName</b> we'll register ourself under in JMX so we can interact directly with the store.
    */
   protected ObjectName objectName;
-  /**
+
+    /**
    * Keep track of our internal state while starting and stopping so a few Exception catches won't be surprised if
    * things start blowing up.
    */
-  protected String state = "stopped";
-
-    /**
-     * Tomcat7 state object
-     */
-   protected LifecycleState lifecycleState;
+   protected LifecycleState lifecycleState = LifecycleState.STOPPED;
 
     /**
    * Hostname of the RabbitMQ server we want to connect to. A combination of setting different MQ servers, virtual
@@ -216,7 +212,6 @@ public class CloudStore extends StoreBase {
    *
    * @return
    */
-//  public String getState() {
   public LifecycleState getState() {
     return lifecycleState;
   }
@@ -226,8 +221,17 @@ public class CloudStore extends StoreBase {
    *
    * @param state
    */
-  public synchronized void setState(String state) {
-    this.state = state;
+//  public synchronized void setState(String state) {
+//    this.state = state;
+//  }
+
+    /**
+   * What state this Store should be transitioned to. One of "stopped", "stopping", "started", "starting".
+   *
+   * @param state
+   */
+  public synchronized void setState(LifecycleState state) {
+      lifecycleState = state;
   }
 
   public String getMqHost() {
@@ -651,7 +655,8 @@ public class CloudStore extends StoreBase {
 
   @Override
   public void startInternal() throws LifecycleException {
-    setState("starting");
+    setState(LifecycleState.STARTING);
+
     MDC.put("method", "start()");
     super.start();
     if (DEBUG) {
@@ -696,12 +701,12 @@ public class CloudStore extends StoreBase {
       log.error(e.getMessage(), e);
     }
     MDC.remove("method");
-    setState("started");
+    setState(LifecycleState.STARTED);
   }
 
   @Override
   public void stopInternal() throws LifecycleException {
-    setState("stopping");
+    setState(LifecycleState.STOPPING);
     MDC.put("method", "stop()");
     try {
       // Make sure local sessions are replicated off this server
@@ -739,7 +744,7 @@ public class CloudStore extends StoreBase {
     // Stop worker threads
     stopWorkers();
     MDC.remove("method");
-    setState("stopped");
+    setState(LifecycleState.STOPPED);
   }
 
   protected void stopWorkers() {
