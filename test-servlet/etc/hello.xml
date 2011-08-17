@@ -1,8 +1,24 @@
-<Context docBase="/Users/mpetrovic/Projects/memcachedServlet/target/hello.war">
-  <Manager className="de.javakaffee.web.msm.MemcachedBackupSessionManager"
-    memcachedNodes="n1:172.16.6.140:11211,n2:172.16.6.140:11212"
-    failoverNodes="n1"
-    requestUriIgnorePattern=".*\.(ico|png|gif|jpg|css|js)$"
-    transcoderFactoryClass="de.javakaffee.web.msm.JavaSerializationTranscoderFactory"
-    />
+<Context docBase="/Users/petrovic/Projects/helloservlet/target/foo.war">
+
+  <Manager className="com.jbrisbin.vcloud.session.CloudManager">
+		<Store className="com.jbrisbin.vcloud.session.CloudStore"
+					 storeId="tcat1"
+					 operationMode="oneforall"
+                                         maxMqHandlers="5"
+                                         maxRetries="3"
+					 loadTimeout="5"
+					 mqHost="192.168.1.111"
+					 mqPort="5672"
+					 mqUser="guest"
+					 mqPassword="guest"
+					 mqVirtualHost="/"
+					 eventsExchange="vcloud.dev.events"
+					 eventsQueue="vcloud.dev.events.tcat1"
+					 sourceEventsQueue="vcloud.dev.source.tcat1"
+					 sessionEventsExchange="vcloud.dev.sessions"
+					 sessionEventsQueuePattern="vcloud.dev.sessions.%s"
+					 replicationEventsExchange="vcloud.dev.replication"
+					 replicationEventsQueue="vcloud.replication.tcat1"/>
+  </Manager>
+
 </Context>
